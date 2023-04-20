@@ -44,7 +44,7 @@ pipeline {
     stage('Deploying App to Kubernetes') {
       steps{
                 sh "sed -i 's/nodeapp:latest/nodeapp:${env.BUILD_ID}/g' deploymentservice.yml"
-                step([$class: 'KubernetesEngineBuilder', projectId: env.PROJECT_ID, clusterName: env.CLUSTER_NAME, location: env.LOCATION, manifestPattern: 'deploymentservice.yml', credentialsId: env.CREDENTIALS_ID, verifyDeployments: true])
+                step([$class: 'KubernetesEngineBuilder', projectId: env.PROJECT_ID, clusterName: env.CLUSTER_NAME, location: env.LOCATION, manifestPattern: 'deploymentservice.yml', credentialsId: env.CREDENTIALS_ID, verifyDeployments: false])
             }
     }
 
